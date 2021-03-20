@@ -45,54 +45,59 @@
     .hide {
       display: none;
     }
+    [v-cloak] { 
+            display: none; 
+        } 
   </style>
   <body>
-    <header id="" class="site-navigation talk">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <div class="logo">
-            <a class="navbar-brand" href="index.html">
-              <img src="assets/images/talk/Bitmap.png" alt="" />
-            </a>
-          </div>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="about.html">Itenerary </a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="customized-tours.html"
-                  >Destination Guide
-                </a>
-              </li>
-
-              <li class="header-btn">
-                <a
-                  class="btn btn-normal2"
-                  data-toggle="modal"
-                  data-target="#expertTalk"
-                  ><img src="assets/images/call-icon.png" alt="" /> Talk to
-                  Expert</a
-                >
-                <a href="#" class="btn btn-yellow2">Confirm Booking</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </header>
-    <div id="app">
+    
+    <div id="app" v-cloak>
+      <header id="" class="site-navigation talk">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="logo">
+              <a class="navbar-brand" href="index.html">
+                <img src="assets/images/talk/Bitmap.png" alt="" />
+              </a>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarTogglerDemo01"
+              aria-controls="navbarTogglerDemo01"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" href="about.html">Itenerary </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="customized-tours.html"
+                    >Destination Guide
+                  </a>
+                </li>
+  
+                <li class="header-btn">
+                  <a
+                    :href="'mailto:'+data.query.assigned_to.email"
+                    class="btn btn-normal2"
+                    data-toggle="modal"
+                    data-target="#expertTalk"
+                    ><img src="assets/images/call-icon.png" alt="" /> Talk to
+                    Expert</a
+                  >
+                  <a class="btn btn-yellow2" :href="'mailto:'+data.query.assigned_to.email">Confirm Booking</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
       <!-- <div>{{data.name}}</div>
     </div>
     <div> -->
@@ -109,13 +114,14 @@
                   {{data.name}}
                 </h2>
                 <a
+                  :href="'mailto:'+data.query.assigned_to.email"
                   class="btn btn-yellow2 hide"
                   data-toggle="modal "
                   data-target="#expertTalk"
                   >Talk to Expert</a
                 >
                 <h5>
-                  Package Created by : {{created.by}} | {{created.contact}}
+                  Package Created by : {{data.query.assigned_to.first_name+" "+data.query.assigned_to.last_name}} | {{data.query.assigned_to.mobile}} | {{data.query.assigned_to.email}}
                 </h5>
                 <h5>{{moment(data.created_at).format("Do MMMM YYYY")}}</h5>
               </div>
@@ -590,7 +596,7 @@
                       <h3>{{accommodation.name}}</h3>
                       <h3 class="yellow">
                         {{accommodation.address}}
-                        <span><a href="#">Check on Maps</a></span>
+                        <span><a :href="'https://www.google.com/maps/search/?api=1&query='+accommodation.latitude+','+accommodation.longitude" v-if="accommodation.latitude && accommodation.longitude">Check on Maps</a></span>
                       </h3>
 
                       <h6>Non - Refundable</h6>
@@ -850,7 +856,7 @@
               </ul>
 
               <div class="tab-content">
-                <div :id="place" :class="'tab-pane fade in '+(index==0?'active show':'')" v-for="(place,index) in getActivityDestinations">
+                <div :id="place" :class="'tab-pane fade in active'+(index==0?' show':'')" v-for="(place,index) in getActivityDestinations">
                   <carousel class="tour-detail-slider">
                     <slide class="item" v-for="activity in getActivity(place)">
                       <div class="row">
@@ -1243,14 +1249,16 @@
                 <div class="blue-box">
                   <h6>Total Cost</h6>
                   <h3>₹ {{getCost}}/-</h3>
-                  <a href="#" class="btn btn-yellow2">Click To Pay</a>
+                  <a href="#" class="btn btn-yellow2 hide">Click To Pay</a>
                 </div>
+                <div class="hide">
                 <a href="#" class="share-btn"
                   ><i class="fa fa-share-alt"></i> Share</a
                 >
                 <a href="#" class="download-btn"
                   ><i class="fa fa-download"></i> Download</a
                 >
+              </div>
               </div>
             </div>
           </div>
@@ -1270,9 +1278,10 @@
             <div class="col-md-8">
               <div class="agent-img">
                 <img
-                  src="assets/images/talk/person.jpg"
+                  src="assets/images/person-24px.svg"
                   class="img-fluid"
                   alt=""
+                  style="width: 100%;"
                 />
               </div>
               <div class="agent-content">
@@ -1292,11 +1301,11 @@
                   >
                 </p>
                 <p>
-                  <a href="mailto:abc@xyz.com"
+                  <a :href="'mailto:'+data.query.assigned_to.email"
                     ><i class="fa fa-envelope">&nbsp;</i>{{data.query.assigned_to.email}}</a
                   >
                 </p>
-                <a href="#" class="btn btn-yellow2">CONTACT</a>
+                <a :href="'mailto:'+data.query.assigned_to.email" class="btn btn-yellow2">CONTACT</a>
               </div>
             </div>
           </div>
