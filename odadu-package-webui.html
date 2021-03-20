@@ -1,0 +1,1972 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Talk To Expert</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+      integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
+      crossorigin="anonymous"
+    />
+    <!-- style css -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" />
+    <!-- owl css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue-carousel@0.18.0/dist/vue-carousel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    .hide {
+      display: none;
+    }
+  </style>
+  <body>
+    <header id="" class="site-navigation talk">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="logo">
+            <a class="navbar-brand" href="index.html">
+              <img src="assets/images/talk/Bitmap.png" alt="" />
+            </a>
+          </div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="about.html">Itenerary </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="customized-tours.html"
+                  >Destination Guide
+                </a>
+              </li>
+
+              <li class="header-btn">
+                <a
+                  class="btn btn-normal2"
+                  data-toggle="modal"
+                  data-target="#expertTalk"
+                  ><img src="assets/images/call-icon.png" alt="" /> Talk to
+                  Expert</a
+                >
+                <a href="#" class="btn btn-yellow2">Confirm Booking</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div id="app">
+      <!-- <div>{{data.name}}</div>
+    </div>
+    <div> -->
+      <section class="talk-banner" id="talk-banner">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="talk-banner-left">
+                <h2></h2>
+                <h2>
+                  <!-- {{first_name}}’s
+                  <span>{{(to_day-fr_day)+"N"+(to_day-fr_day+1)+"D"}}</span>
+                  Travel to {{destination}} Awaits -->
+                  {{data.name}}
+                </h2>
+                <a
+                  class="btn btn-yellow2 hide"
+                  data-toggle="modal "
+                  data-target="#expertTalk"
+                  >Talk to Expert</a
+                >
+                <h5>
+                  Package Created by : {{created.by}} | {{created.contact}}
+                </h5>
+                <h5>{{moment(data.created_at).format("Do MMMM YYYY")}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="banner-detail">
+        <div class="container app">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="icon-box">
+                <img src="assets/images/talk/dummy-white.png" alt="" />
+                <h3>
+                  <div style="display: inline" v-html="GetPax(data.pax)"></div>
+                </h3>
+              </div>
+              <div v-for=""></div>
+              <div class="icon-box">
+                <img src="assets/images/talk/dummy-white.png" alt="" />
+                <div>
+                  <div class="more-options-fade"></div>
+                  <div class="hover-display"><h3 v-html="getPlacesInfo" style="">
+                  </h3></div>
+                <h3 v-html="getPlacesInfo" style="max-width: 80%;overflow: hidden;white-space: nowrap;">
+                </h3>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="owl-carousel owl-theme" v-carousel>
+          <slide v-for="char in text"><div>{{char}}</div></slide>
+		</div> -->
+      </section>
+
+      <section class="service-offer hide">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="service-heading">
+                <h2>Services Offered:</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="service-box">
+                <img
+                  src="assets/images/talk/transfer-34428.png"
+                  class="img-fluid"
+                  alt=""
+                />
+                <h4>International Flight</h4>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="service-box">
+                <img
+                  src="assets/images/talk/hotel-1477190.png"
+                  class="img-fluid"
+                  alt=""
+                />
+                <h4>Hotel</h4>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="service-box">
+                <img
+                  src="assets/images/talk/sail-34425.png"
+                  class="img-fluid"
+                  alt=""
+                />
+                <h4>Cruise</h4>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="service-box">
+                <img
+                  src="assets/images/talk/passport-34421.png"
+                  class="img-fluid"
+                  alt=""
+                />
+                <h4>Visa Assistance</h4>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="service-box">
+                <img
+                  src="assets/images/talk/baggage-34463.png"
+                  class="img-fluid"
+                  alt=""
+                />
+                <h4>Transfers</h4>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="service-box">
+                <img
+                  src="assets/images/talk/train-34453.png"
+                  class="img-fluid"
+                  alt=""
+                />
+                <h4>Trains</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="talk-highlight hide">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="talk-highlight-heading">
+                <h5>Explore</h5>
+                <h2>Highlights</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="owl-carousel owl-theme talk-highlight-slider">
+              <div class="item">
+                <div class="highlight-box">
+                  <img
+                    src="assets/images/talk/highlight1.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="item">
+                <div class="highlight-box">
+                  <img
+                    src="assets/images/talk/highlight2.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="item">
+                <div class="highlight-box">
+                  <img
+                    src="assets/images/talk/highlight1.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="item">
+                <div class="highlight-box">
+                  <img
+                    src="assets/images/talk/highlight2.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="timeline-itenary hide">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="timeline-heading">
+                <h2>Timeline / Itinerary</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Morning</th>
+                    <th>Afternoon</th>
+                    <th>Evening</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h3>Day 01</h3>
+                      <h3>Istanbul - 02 Nights</h3>
+                      <img
+                        src="assets/images/talk/locate-yellow.png"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </td>
+                    <td colspan="2">
+                      <div class="activity-box">
+                        <div class="content">
+                          <h5>Arrival - Hotel Check - IN</h5>
+                          <h4>
+                            Arrive in Istanbul airport. Get transffered to your
+                            hotel.
+                          </h4>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="blank">
+                        <img
+                          src="assets/images/talk/Day 4 Copy.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3>Day 02</h3>
+                      <h3>Istanbul - 02 Nights</h3>
+                      <img
+                        src="assets/images/talk/locate-yellow.png"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </td>
+                    <td>
+                      <div class="activity-box image">
+                        <div class="content">
+                          <h5>Adventure Trek</h5>
+                          <h4>Skip the line</h4>
+                        </div>
+                        <img
+                          src="assets/images/talk/activity.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="activity-box2">
+                        <div class="content">
+                          <h5>Activity</h5>
+                          <h4>North Cappadocia Red Tour</h4>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="activity-box image2">
+                        <img
+                          src="assets/images/talk/activity.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                        <div class="content">
+                          <h5>Adventure Trek</h5>
+                          <h4>Skip the line</h4>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3>Day 03</h3>
+                      <h3>Cruise - 02 Nights</h3>
+                      <img
+                        src="assets/images/talk/dinner-yellow.png"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </td>
+                    <td colspan="3">
+                      <div class="activity-box">
+                        <div class="content">
+                          <h5>Deluxe, 02 | 02A 02C 01I | Breakfast, Dinner</h5>
+                          <h4>Deluxe, 02 | 02A 02C 01I | Breakfast, Dinner</h4>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3>Day 04</h3>
+                      <h3>Istanbul - 02 Nights</h3>
+                      <img
+                        src="assets/images/talk/locate-yellow.png"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </td>
+                    <td colspan="3">
+                      <div class="blank">
+                        <img
+                          src="assets/images/talk/Day 4 Copy.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flight-detail">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>YOUR FLIGHT DETAILS</h4>
+              <h2>{{getFlights[0].segments[0].carrier.name}} - {{getFlights[0].segments[0].carrier.code+" "+getFlights[0].segments[0].flight_number}}</h2>
+              <h3 class="hide">
+                Seat Number: {{getFlights[0].segments[0].seat_no}}  | Add on Luggage: {{getFlights[0].segments[0].luggages[1].kgs}} KGs | Meal: {{getFlights[0].segments[0].meals[0].desc}}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flight-ticket" id="flight-ticket">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <!-- <div class="owl-carousel owl-theme ticket-slider"> -->
+              <!-- <div class="item"> -->
+              <carousel ref="carousel" :per-page="1" :loop="true" :navigationEnabled="true">
+                <slide v-for="flight in getFlights">
+                  <div class="row">
+                    <div
+                      class="col-lg-9 col-md-10 col-sm-12"
+                      style="margin: 50px"
+                    >
+                      <div class="ticket">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="ticket-left">
+                              <div
+                                style="
+                                  display: flex;
+                                  justify-content: space-around;
+                                  flex-flow: wrap;
+                                "
+                              >
+                                <img
+                                  alt=""
+                                  class="img-fluid"
+                                  :src="(flight.segments.length>1)?(urls.multi_flight_icon):(urls.flight_icon+flight.segments[0].carrier.code+'.png')"
+                                />
+                              </div>
+                              <div class="more-options-fade"></div>
+                              <div class="hover-display">
+                                <div style="display: flex; overflow: hidden">
+                                  <h3
+                                    v-for="segment in flight.segments"
+                                    style="white-space: nowrap"
+                                  >
+                                    {{segment.carrier.name+" |"}}&nbsp;
+                                  </h3>
+                                </div>
+                                <div style="display: flex; overflow: hidden">
+                                  <h4
+                                    v-for="segment in flight.segments"
+                                    style="white-space: nowrap"
+                                  >
+                                    <!-- {{segment.carrier.code}} -->
+                                    {{segment.carrier.code+ (" ")
+                                    +segment.flight_number+" |"}} &nbsp;
+                                  </h4>
+                                </div>
+                              </div>
+                              <div style="display: flex; overflow: hidden">
+                                <h3
+                                  v-for="segment in flight.segments"
+                                  style="white-space: nowrap"
+                                >
+                                  {{segment.carrier.name+" |"}}&nbsp;
+                                </h3>
+                              </div>
+                              <div style="display: flex; overflow: hidden">
+                                <h4
+                                  v-for="segment in flight.segments"
+                                  style="white-space: nowrap"
+                                >
+                                  <!-- {{segment.carrier.code}} -->
+                                  {{segment.carrier.code+ (" ")
+                                  +segment.flight_number+" |"}} &nbsp;
+                                </h4>
+                              </div>
+                              <h4></h4>
+                              <h5>
+                                {{flight.is_refundable?"":"Non -"}} Refundable 
+                              </h5>
+                            </div>
+                          </div>
+                          <div class="col-md-8">
+                            <div class="ticket-right">
+                              <img
+                                src="assets/images/talk/ft-arrow.png"
+                                class="ft-arrow img-fluid"
+                                alt=""
+                              />
+                              <div class="from">
+                                <h5>From</h5>
+                                <h3>{{flight.origin.code}}</h3>
+                                <h5>{{GetNextDate(flight.departure.day)}}</h5>
+                                <h5>{{FormatTime(flight.departure.time)}}</h5>
+                              </div>
+                              <div class="btw">
+                                <img
+                                  src="assets/images/talk/btw.png"
+                                  class="img-fluid"
+                                  alt=""
+                                />
+                                <h5>
+                                  {{
+                                    CalculateTimeDifference(flight.arrival,flight.departure)
+                                  }}
+                                </h5>
+                              </div>
+                              <div class="to">
+                                <h5>TO</h5>
+                                <h3>{{flight.destination.code}}</h3>
+                                <h5>{{GetNextDate(flight.arrival.day)}}</h5>
+                                <h5>{{FormatTime(flight.arrival.time)}}</h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </slide>
+              </carousel>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hotel-stay" id="hotel-stay">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="`">Your Hotel Stay</h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <carousel
+                :per-page="1"
+                :loop="true"
+                :navigationEnabled="true"
+                class="hotel-stay-slider"
+              >
+                <slide class="item" v-for="accommodation in getAccommdations">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4">
+                      <div class="hotel-stay-image">
+                        <img
+                          v-bind:src="accommodation.photo_url"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-7 col-md-8">
+                      <h3>{{accommodation.name}}</h3>
+                      <h3 class="yellow">
+                        {{accommodation.address}}
+                        <span><a href="#">Check on Maps</a></span>
+                      </h3>
+
+                      <h6>Non - Refundable</h6>
+                      <h5>
+                        <span class="rating-count"
+                          >{{accommodation.rating}}</span
+                        >
+                        <span class="review-star">
+                          <img
+                            src="assets/images/talk/blue-star.png"
+                            class="img-fluid"
+                            alt=""
+                            v-for="rating in parseInt(accommodation.rating)"
+                          />
+                          <img
+                            src="assets/images/talk/half-star.png"
+                            class="img-fluid"
+                            alt=""
+                            v-if="parseFloat(accommodation.rating)%1 == 0.5"
+                          />
+                        </span>
+                        <span class="review-count">545 Reviews</span>
+                      </h5>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2 col-6">
+                      
+                      <div class="hotel-itenary">
+                        <img
+                          src="assets/images/talk/hotel-icon.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                        <div class="content">
+                          <h5>
+                            {{accommodation.rooms.length>10?"":"0"+accommodation.rooms.length}}
+                          </h5>
+                          <h6>Rooms</h6>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2 col-6">
+                      <div class="more-options-fade"></div>
+                      <div class="hover-display">
+                        {{accommodation.rooms.reduce((r,room)=>r+room.room_type+" | ","").substring(0,accommodation.rooms.reduce((r,room)=>r+room.room_type+" | ","").length-2)}}
+                      </div>
+                      <div
+                        class="hotel-itenary"
+                        style="display: flex; overflow: hidden"
+                      >
+                        <img
+                          src="assets/images/talk/bed.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                        <div class="content">
+                          <h5 style="white-space: nowrap">
+                            {{accommodation.rooms[0].room_type}}
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2 col-6">
+                      <div class="hotel-itenary">
+                        <img
+                          src="assets/images/talk/person.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                        <div class="content">
+                          <h5>
+                            {{getTotalPeopleInRooms(accommodation.rooms)}}
+                          </h5>
+                          <h6>People</h6>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 col-6">
+                      <div class="hotel-itenary">
+                        <img
+                          src="assets/images/talk/checkin.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                        <div class="content">
+                          <h5>
+                            {{GetNextDate(parseInt(accommodation.fr_day))}}
+                          </h5>
+                          <h6>Check In Date</h6>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 col-6">
+                      <div class="hotel-itenary">
+                        <img
+                          src="assets/images/talk/checkout.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                        <div class="content">
+                          <h5>
+                            {{GetNextDate(parseInt(accommodation.to_day))}}
+                          </h5>
+                          <h6>Check Out Date</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </slide>
+              </carousel>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="note">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <p>
+                <b>Note:</b> Check in check out timings are only indicative and
+                each hotels holds the right for changing the timings according
+                to their discretion.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cruise-detail hide">
+        <div class="cruise-detail-inner">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-5">
+                <div class="cruise-detail-left">
+                  <h6>Cruise Details</h6>
+                  <h3>Mediterranean MSC Cruises: <span>Divina</span></h3>
+                  <h4>
+                    <i class="fas fa-map-marker-alt"></i> Genoa ---- Marseille
+                  </h4>
+                  <p>
+                    The location is perfect. In China Town, by the financial
+                    district, walking distance to Boat Quay and Clarke Quay, 2
+                    MRT lines at the base of the building. It is over 1700 sq ft
+                    of living - 3 large bedrooms, 2 full baths and large kitchen
+                    and living room.The location is perfect. In China Town, by
+                    the financial district
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="owl-carousel owl-theme cruise-detail-slider">
+              <div class="item">
+                <div class="hotel-itenary">
+                  <img
+                    src="assets/images/talk/moon.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="content">
+                    <h5>3N 4D</h5>
+                    <h6>Stay</h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="hotel-itenary">
+                  <img
+                    src="assets/images/talk/bed.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="content">
+                    <h5>Deluxe</h5>
+                    <h6>Twin Sharing</h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="hotel-itenary">
+                  <img
+                    src="assets/images/talk/person.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="content">
+                    <h5>02</h5>
+                    <h6>Per room</h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="hotel-itenary">
+                  <img
+                    src="assets/images/talk/checkin.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="content">
+                    <h5>Aug 15 2020</h5>
+                    <h6>Departure Date</h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="hotel-itenary">
+                  <img
+                    src="assets/images/talk/checkout.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="content">
+                    <h5>Aug 20 2020</h5>
+                    <h6>Arrival Date</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center mt-5">
+            <a href="#" class="btn btn-yellow2">KNOW MORE</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="tour-detail">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="tour-detail-heading">Tours & Activities Details</h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="nav nav-pills nav-justified">
+                <li v-for="(place,index) in getActivityDestinations">
+                  <a data-toggle="pill" :class="(index==0?'active':'')" :href="'#'+place" >{{place}}</a>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <div :id="place" :class="'tab-pane fade in '+(index==0?'active show':'')" v-for="(place,index) in getActivityDestinations">
+                  <carousel class="tour-detail-slider">
+                    <slide class="item" v-for="activity in getActivity(place)">
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                          <div class="tour-detail-image">
+                            <img
+                              :src="activity.activity.images[0].url"
+                              class="img-fluid"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-7">
+                          <h3>{{activity.activity.title}}</h3>
+
+                          <h6>{{activity.activity.is_refundable?"":"Non -"}} Refundable</h6>
+                          <h5>
+                            <span class="rating-count">{{activity.activity.rating}}</span>
+                            <span class="review-star">
+                            <img
+                              src="assets/images/talk/blue-star.png"
+                              class="img-fluid"
+                              alt=""
+                              v-for="rating in parseInt(activity.activity.rating)"
+                            />
+                            <img
+                              src="assets/images/talk/half-star.png"
+                              class="img-fluid"
+                              alt=""
+                              v-if="parseFloat(activity.activity.rating)%1 == 0.5"
+                            />
+                            </span>
+                            <span class="review-count">545 Reviews</span>
+                            <span class="hour"
+                              ><img
+                                src="assets/images/talk/clock-icon.png"
+                                class="img-fluid"
+                                alt=""
+                              />
+                              2 HRS</span
+                            >
+                          </h5>
+                          <p>
+                           {{activity.activity.summary}}
+                          </p>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <h4>Inclusions</h4>
+                              {{activity.activity.inclusions}}
+                            </div>
+
+                            <div class="col-md-6">
+                              <h4>Exclusions</h4>
+                              {{activity.activity.exclusions}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </slide>
+
+                    <div class="item">
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                          <div class="tour-detail-image">
+                            <img
+                              src="assets/images/talk/hotel-stay.png"
+                              class="img-fluid"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-7">
+                          <h3>Coffee Farm Tour, From Seedling to Cup</h3>
+
+                          <h6>Non - Refundable</h6>
+                          <h5>
+                            <span class="rating-count">4.5</span>
+                            <span class="review-star">
+                              <img
+                                src="assets/images/talk/blue-star.png"
+                                class="img-fluid"
+                                alt=""
+                              />
+                              <img
+                                src="assets/images/talk/blue-star.png"
+                                class="img-fluid"
+                                alt=""
+                              />
+                              <img
+                                src="assets/images/talk/blue-star.png"
+                                class="img-fluid"
+                                alt=""
+                              />
+                              <img
+                                src="assets/images/talk/blue-star.png"
+                                class="img-fluid"
+                                alt=""
+                              />
+                              <img
+                                src="assets/images/talk/half-star.png"
+                                class="img-fluid"
+                                alt=""
+                              />
+                            </span>
+                            <span class="review-count">545 Reviews</span>
+                            <span class="hour"
+                              ><img
+                                src="assets/images/talk/clock-icon.png"
+                                class="img-fluid"
+                                alt=""
+                              />
+                              2 HRS</span
+                            >
+                          </h5>
+                          <p>
+                            The location is perfect. In China Town, by the
+                            financial district, walking distance to Boat Quay
+                            and Clarke Quay,
+                          </p>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <h4>Inclusions</h4>
+                              <ul>
+                                <li>Professional guide</li>
+                                <li>Headset to hear the gide clearly</li>
+                                <li>Tour of Eiffel tower’s second floor</li>
+                                <li>Seine River cruise</li>
+                              </ul>
+                            </div>
+
+                            <div class="col-md-6">
+                              <h4>Exclusions</h4>
+                              <ul>
+                                <li>Food and Drinks</li>
+                                <li>Hotel pickup and drop-off</li>
+                                <li>Gratuities</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </carousel>
+                </div>
+                <div id="singapore" class="tab-pane fade">
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+
+                <div id="bangkok" class="tab-pane fade">
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+
+                <div id="nairobi" class="tab-pane fade">
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+
+                <div id="osaka" class="tab-pane fade">
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="transfer-bg"></section>
+
+      <section class="transfer-sec" id="transfer-sec">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="heading">Your Transfers</h5>
+              <ul class="nav nav-pills nav-justified">
+                <li><a data-toggle="pill" href="#train" v-if="getTrain.length>0">Train</a></li>
+                <li class="active">
+                  <a data-toggle="pill" href="#self-drive"  v-if="getSelfDrive.length>0">Self Drive</a>
+                </li>
+                <li><a data-toggle="pill" href="#ferry"  v-if="getFerry.length>0">Ferry</a></li>
+                <li><a data-toggle="pill" href="#bus"  v-if="getBus.length>0">Bus</a></li>
+                <li>
+                  <a data-toggle="pill" href="#chauffer" class="active"  v-if="getChauffer.length>0"
+                    >Chauffer</a
+                  >
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <div id="train" class="tab-pane fade">
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+                <div id="chauffer" class="tab-pane fade in active show">
+                  <carousel class="transfer-slider" 
+                  :per-page="1"
+                  :loop="true"
+                  :navigationEnabled="true">
+                    <slide class="item" v-for="chauffer in getChauffer">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="transfer-box" style="margin-bottom: 20px;">
+                            <div class="row" style="margin-bottom: 20px;">
+                              <div class="col-md-4">
+                                <div class="transfer-img">
+                                  <img
+                                    :src="chauffer.data.cars[0].images[0].url"
+                                    alt=""
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-md-8">
+                                <div class="transfer-detail">
+                                  <h6 class="car-type">{{chauffer.data.cars[0].type}}</h6>
+                                  <h2 class="car-name">
+                                    <!-- {{const car = chauffer.data.cars[0]}} -->
+                                    <span>{{chauffer.data.cars[0].name}}</span>
+                                    <span class="hour"
+                                      ><img
+                                        src="assets/images/talk/clock-icon.png"
+                                        class="img-fluid"
+                                        alt=""
+                                      />
+                                      2 HRS</span
+                                    >
+                                  </h2>
+                                  <a href="#" class="non-refund-btn"
+                                    >{{(chauffer.data.cars[0].is_refundable?"":"NON - ")+
+                                    "REFUNDABLE"}}</a
+                                  >
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="from-to">
+                                      <h6>From</h6>
+                                      <h4>{{(chauffer.data.origin)?(chauffer.data.origin.name)?chauffer.data.origin.name:'NA':'NA'}}</h4>
+                                      <h5>Location name</h5>
+                                      <h5>{{chauffer.fr_day?GetNextDate(chauffer.fr_day):"NA"}} | 6:30 PM</h5>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div
+                                      class="from-to"
+                                      style="
+                                        border-left: 3px dashed #888;
+                                        padding-left: 20px;
+                                      "
+                                    >
+                                      <h6>To</h6>
+                                      <h4>{{(chauffer.data.destination)?(chauffer.data.destination.name)?chauffer.data.destination.name:'NA':'NA'}}</h4>
+                                      <h5>Location name</h5>
+                                      <h5>{{chauffer.to_day?GetNextDate(chauffer.to_day):"NA"}} | 6:30 PM</h5>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="transfer-box-bottom">
+                              <div class="detail-box">
+                                <h6 class="title">No of Pax</h6>
+                                <h5>
+                                  <div
+                                    style="display: inline"
+                                    v-html="GetPax(chauffer.data.cars[0].pax)"
+                                  ></div>
+                                </h5>
+                              </div>
+                              <div class="detail-box">
+                                <h6 class="title">No of Luggages</h6>
+                                <h5>{{(chauffer.data.cars[0].luggage.big>9?"":"0")+chauffer.data.cars[0].luggage.big+" Big"}} | {{(chauffer.data.cars[0].luggage.small>9?"":"0")+chauffer.data.cars[0].luggage.small+" Small"}}</h5>
+                              </div>
+                              <div class="detail-box">
+                                <h6 class="title">Car Transmission</h6>
+                                <h5>Automatic</h5>
+                              </div>
+                              <div class="detail-box">
+                                <h6 class="title">Insurance</h6>
+                                <h5>Covered</h5>
+                              </div>
+                              <div class="detail-box">
+                                <h6 class="title">Safety</h6>
+                                <h5>GPS Enabled</h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </slide>
+                  </carousel>
+                </div>
+
+                <div id="ferry" class="tab-pane fade">
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+
+                <div id="bus" class="tab-pane fade">
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+
+                <div id="self-drive" class="tab-pane fade">
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="visa hide">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="visa-left">
+                <h6>Visa Fee</h6>
+                <h3>Visa for Singapore</h3>
+                <p>
+                  Visa Embassy Fee & Visa Assistance is included in the package.
+                  Granting of visa is at the discretion of the visa issuing
+                  authority. We are not responsible for the Visa issue delays
+                  post yoursubmission. However, we will help you with the
+                  expedite process.
+                </p>
+                <p>For Visa Document checklist, please click here.</p>
+                <a href="#" class="btn btn-yellow2">Visa Document checklist</a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="visa-right">
+                <h6>Visa Assistance</h6>
+                <h3>Visa for Europe</h3>
+                <p>
+                  Charges for visa assistance applicable Visa assistance is to
+                  enable the entire visa process such as booking appointments,
+                  helping with documentation checklisthowever, visa filling and
+                  another requirement has to be borne by the customer.
+                </p>
+                <p>
+                  Granting of visa is at the discretion of the visa issuing
+                  authority. We are not responsible for the Visa issue delays
+                  post yoursubmission. However, we will help you with the
+                  expedite process.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing-sec">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h3>Pricing Table</h3>
+              <table class="table">
+                <tr>
+                  <th>Cost for</th>
+                  <th>Cost</th>
+                </tr>
+                <tr v-for="price in data.data.prices">
+                  <td>{{price.name}}</td>
+                  <td>₹ {{price.amount*price.count}}.00/- <span>(Inc. GST)</span></td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-4 offset-md-2">
+              <div class="blue-box-btns">
+                <div class="blue-box">
+                  <h6>Total Cost</h6>
+                  <h3>₹ {{getCost}}/-</h3>
+                  <a href="#" class="btn btn-yellow2">Click To Pay</a>
+                </div>
+                <a href="#" class="share-btn"
+                  ><i class="fa fa-share-alt"></i> Share</a
+                >
+                <a href="#" class="download-btn"
+                  ><i class="fa fa-download"></i> Download</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="travel-agent">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="heading">
+                <h5>Your Travel Agent</h5>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="agent-img">
+                <img
+                  src="assets/images/talk/person.jpg"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="agent-content">
+                <h3>{{data.query.assigned_to.first_name+" "+data.query.assigned_to.last_name}}</h3>
+                <p>
+                  Driven by a passion for the outdoors, 'Active Adventurers'
+                  want to push themselves physically and mentally while
+                  exploring the natural world
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="agent-contact">
+                <p>
+                  <a href="tel:9740781404"
+                    ><i class="fa fa-phone-alt"></i> {{data.query.assigned_to.mobile}}</a
+                  >
+                </p>
+                <p>
+                  <a href="mailto:abc@xyz.com"
+                    ><i class="fa fa-envelope">&nbsp;</i>{{data.query.assigned_to.email}}</a
+                  >
+                </p>
+                <a href="#" class="btn btn-yellow2">CONTACT</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="inclusion-exclusion">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Inclusions</h5>
+              {{data.data.additional_details[0].desc}}
+            </div>
+            <div class="col-md-6">
+              <h5>Exclusions</h5>
+              {{data.data.additional_details[1].desc}}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="other-exp hide">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="heading">Other Experiences</h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="other-exp-box">
+                <div class="img-box">
+                  <img
+                    src="assets/images/cruise-itenery/other-exp2.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+                <div class="text-box">
+                  <h4>MSC Cruises: MSC Grandiosa</h4>
+                  <div class="price-hide">
+                    <small>Starting From</small>
+                    <h5>₹10,628.87</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="other-exp-box">
+                <div class="img-box">
+                  <img
+                    src="assets/images/cruise-itenery/other-exp2.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+                <div class="text-box">
+                  <h4>MSC Cruises: MSC Grandiosa</h4>
+                  <div class="price-hide">
+                    <small>Starting From</small>
+                    <h5>₹10,628.87</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="other-exp-box">
+                <div class="img-box">
+                  <img
+                    src="assets/images/cruise-itenery/other-exp2.png"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+                <div class="text-box">
+                  <h4>MSC Cruises: MSC Grandiosa</h4>
+                  <div class="price-hide">
+                    <small>Starting From</small>
+                    <h5>₹10,628.87</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="note">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <p>
+                <b>Terms and Conditions :</b>&nbsp;{{data.data.policies[0].desc}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ttl-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="ttl-footer-logo">
+                <img src="assets/images/talk/Bitmap.png" alt="" />
+              </div>
+            </div>
+            <div class="col-md-10">
+              <p>
+               {{data.data.additional_details[2].desc}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/SSENSE/vue-carousel/6823411d/dist/vue-carousel.min.js"></script> -->
+    <!-- owl script -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+      integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0="
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/custom.js"></script>
+    <!-- axios  -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script type="module">
+    const GetPax = (pax) => {
+      if (!pax) {
+        return "";
+      }
+      const adults = pax.adults;
+      const kids = pax.kids;
+      const infants = pax.infants;
+      console.log(adults > 0);
+      const adultsString =
+        adults > 0
+          ? "<div style='display: inline'>" +
+            (adults > 9 ? "" : "0") +
+            adults +
+            " Adult" +
+            (adults > 1 ? "s" : "") +
+            " </div>"
+          : "";
+      const kidsString =
+        kids > 0
+          ? "| <div style='display: inline'>" +
+            (kids > 9 ? "" : "0") +
+            kids +
+            " Kid" +
+            (kids > 1 ? "s" : "") +
+            " </div>"
+          : "";
+      const infantsString =
+        infants > 0
+          ? "| <div style='display: inline'>" +
+            (infants > 9 ? "" : "0") +
+            infants +
+            " Infant" +
+            (infants > 1 ? "s" : "") +
+            " </div>"
+          : "";
+      return adultsString + kidsString + infantsString;
+    };
+    const CalculateTimeDifference = (arrival, dept) => {
+      //   const daf;
+      // return arrivalTime.day+" "+deptTime.day;
+
+      const daysDiff = parseInt(arrival.day) - parseInt(dept.day);
+      //   console.log(daysDiff)
+      window.arr = moment.duration(arrival.time).add(daysDiff, "days");
+      window.dept = moment.duration(dept.time);
+      let t1 = moment.duration(arrival.time).add(daysDiff, "days");
+      t1 = t1.subtract(moment.duration(dept.time));
+      window.t1 = t1;
+      return t1.hours() + "hrs " + t1.minutes() + "mins";
+    };
+    const app = new Vue({
+      el: "#app",
+      methods: {
+        CalculateTimeDifference: CalculateTimeDifference,
+        GetPax: GetPax,
+        FormatTime: (time) =>
+          moment.utc(moment.duration(time).asMilliseconds()).format("hh:mm A"),
+        GetNextDate: function (add) {
+          return moment(this.data.start_date).add(add, "days").format("LL");
+        },
+        getActivity: function (loc){
+          return this.data.data.activities.filter((activity)=>(activity.destination.name === loc));
+        },
+        getTotalPeopleInRooms: function (rooms) {
+          console.log(rooms);
+          return rooms
+            .map((room) => {
+              console.log(room);
+              const pax = room.pax
+                ? room.pax
+                : room.guests
+                ? room.guests
+                : { adults: 0, kids: 0, infants: 0 };
+              return pax.adults + pax.kids + pax.infants;
+            })
+            .reduce((ac, val) => ac + val, 0);
+        },
+        pageChange(i){ console.log('current Index', i); },
+      },
+
+      components: {
+        carousel: VueCarousel.Carousel,
+        slide: VueCarousel.Slide,
+      },
+      mounted() {
+        console.log("mounted");
+        axios
+          .get(
+            "https://staging.api.trawish.com//v1/crm/company/globalconnect/my/packages/"+(new URL(document.URL)).searchParams.get('pid')+"?limit=5&page=1&key=76f6da07c06706ae64a51cb7f4bccddb394241ec63867b1b1d50d800a8ad436c603275f8510f522989c6b486d2055e4d021631cd9a06cdf2674fec435576d6ea"
+          )
+          .then((data) => {
+            this.data = data.data;
+            window.data = data.data;
+          });
+      },
+      data: {
+        first_name: "Shubham",
+        destination: "Singapore",
+        fr_day: 1,
+        to_day: 3,
+        urls: {
+          multi_flight_icon:
+            "https://www.gstatic.com/flights/airline_logos/70px/multi.png",
+          flight_icon: "https://www.gstatic.com/flights/airline_logos/70px/",
+        },
+        created: {
+          by: "Lacara Jones",
+          contact: "9740781404",
+          at: "12 th August 2020",
+        },
+        data: {
+          name: "world",
+        },
+        name: "Hello",
+      },
+      computed: {
+        getActivityDestinations: function(){
+          // let finalVal = "";
+          const locs = new Set();
+          this.data.data.activities.map((element)=>{
+            locs.add(element.destination.name.split(',')[0]);
+          })
+          console.log(locs)
+          const locs2 = []
+          locs.forEach((loc)=>{
+            locs2.push(loc);
+          })
+          return locs2;
+        },
+        getFlights: function () {
+          // console.log(this)
+          return this.data.routes
+            .filter((route) => route.mode === "flight")
+            .map((route) => route.data.flights[0]);
+        },
+        getAccommdations: function () {
+          // console.log(this)
+          return this.data.routes
+            .filter((route) => route.mode === "hotel")
+            .map((route) => {
+              const accomodations = route.data.accommodations[0];
+              accomodations.fr_day = route.fr_day;
+              accomodations.to_day = route.to_day;
+              return accomodations;
+            });
+        },
+        getChauffer: function () {
+          return this.data.routes.filter(
+            (route) => route.mode === "car_chauffeur"
+          );
+          // .map((route) => route.data.flights[0]);
+        },
+        getPlacesInfo: function(){
+          let finalPlaces = ""
+          let flightOrigin = "";
+          const routes = this.data.routes;
+          const arrow = '<span>--------<i class="fas fa-caret-right"></i></span>'
+          // let flightPlaces = routes[0].data.origin.name.split(',');
+          routes.map((element,index)=>{
+            if(element.mode === "flight"){
+              flightOrigin="";  
+              let flightPlaces = element.data.origin.name.split(',');
+              flightPlaces.map((element,index)=>{
+                if(index!= 0){
+                flightOrigin += element;
+                if( index != flightPlaces.length-1) flightOrigin+=','
+                }
+              })
+              finalPlaces += flightOrigin + arrow
+              flightPlaces = element.data.destination.name.split(',');
+              flightOrigin = "";
+              flightPlaces.map((element,index)=>{
+                if(index!= 0){
+                flightOrigin += element;
+                if( index != flightPlaces.length-1) flightOrigin+=','
+                }
+              })
+              finalPlaces += flightOrigin + ((index != routes.length-1)?arrow:"");
+            }
+            else if(element.mode === "car_chauffeur"){
+              // console.log('here')
+              let chaufferPlace =  "&nbsp;"+ element.data.origin.name;
+              finalPlaces += chaufferPlace + arrow;
+            }
+            else if(element.mode === "hotel"){
+              const hotelPlaces = new Set();
+              element.data.accommodations.map((element)=>{hotelPlaces.add(element.destination.name);});
+              console.log(hotelPlaces);
+              const li = [];
+              hotelPlaces.forEach((element,index)=>{
+                li.push(element);
+              })
+              li.map((element,index)=>{
+                finalPlaces += element + ((index!== li.length-1)?" | ":"");
+              })
+              finalPlaces += arrow;
+            }
+          })
+          // flightPlaces.map((element,index)=>{
+          //   if(index!= 0){
+          //   flightOrigin += element;
+          //   if( index != flightPlaces.length-1) flightOrigin+=','
+          //   }
+          // })
+          // finalPlaces += flightOrigin + arrow;
+          // flightPlaces = routes[0].data.destination.name.split(',');
+          // flightOrigin = "";
+          // flightPlaces.map((element,index)=>{
+          //   if(index!= 0){
+          //   flightOrigin += element;
+          //   if( index != flightPlaces.length-1) flightOrigin+=','
+          //   }
+          // })
+          // finalPlaces += flightOrigin + arrow;
+          // let chaufferPlace =  "&nbsp;"+ routes[2].data.origin.name;
+          // finalPlaces += chaufferPlace + arrow;
+          // const hotelPlaces = new Set();
+          // console.log(routes)
+          // for(let route in routes){
+          //   // console.log(.mode)
+          //   if(routes[route].mode !== "hotel") continue;
+          //   console.log(routes[route])
+          //   routes[route].data.accommodations.map((element)=>{hotelPlaces.add(element.destination.name);console.log(element.destination.name)});
+          // }
+          // window.hotelPlaces = hotelPlaces
+          // hotelPlaces.forEach((element,index)=>{
+          //   console.log(element)
+          //   finalPlaces += element + (index!=hotelPlaces.size-1)?" | ":"";
+          //   console.log(finalPlaces)
+          // })
+          
+          return finalPlaces;
+          // ` Delhi
+          //         <span>--------<i class="fas fa-caret-right"></i></span>
+          //         Singapore
+          //         <span>--------<i class="fas fa-caret-right"></i></span> Delhi
+          //         <span>--------<i class="fas fa-caret-right"></i></span>
+          //         Singapore`
+        },
+        getSelfDrive: function(){
+          return [];
+        },
+        getTrain: function(){
+          return [];
+        },
+        getFerry: function(){
+          return [];
+        },
+        getBus: function(){
+          return [];
+        },
+        getCost: function(){
+          if(!this.data.data.prices) return 0;
+          return this.data.data.prices.reduce((amt,price)=>amt+price.amount*price.count,0)
+        }
+      },
+    });
+
+    window.app = app;
+    // const bannerDetail = new Vue({
+    //   el: "#bannerdetail",
+    //   methods: {
+    //     GetPax: GetPax,
+    //   },
+    //   data: {
+    //     pax:{
+    //       adults:0,
+    //       kids:0,
+    //       infants:0,
+    //     }
+    //   }
+    // });
+    // window.bannerDetail = bannerDetail;
+    
+    // const flightTicket = new Vue({
+    //   el: "#flight-icket",
+    //   methods: {
+    //     Calculate: CalculateTimeDifference,
+    //     FormatTime: (time) =>
+    //       moment.utc(moment.duration(time).asMilliseconds()).format("hh:mm A"),
+    //   },
+    //   components: {
+    //     carousel: VueCarousel.Carousel,
+    //     slide: VueCarousel.Slide,
+    //   },
+    //   data: {
+    //     flight_logo_url: "https://www.goibibo.com/images/v2/carrierImages/",
+    //     flights: [
+    //       {
+    //         is_refundable: true,
+    //         class: "Economy",
+    //         pax: {
+    //           adults: 2,
+    //           kids: 0,
+    //           infants: 0,
+    //         },
+    //         origin: {
+    //           code: "DEL",
+    //           name: "New Delhi",
+    //         },
+    //         destination: {
+    //           code: "SIN",
+    //           name: "Singapore Changi",
+    //         },
+    //         departure: {
+    //           day: "0",
+    //           time: "21:50:00",
+    //         },
+    //         arrival: {
+    //           day: "1",
+    //           time: "21:25:00",
+    //         },
+    //         duration: 1265,
+    //         segments: [
+    //           {
+    //             origin: {
+    //               code: "DEL",
+    //               name: "New Delhi",
+    //             },
+    //             destination: {
+    //               code: "DXB",
+    //               name: "Dubai",
+    //             },
+    //             departure: {
+    //               day: "0",
+    //               time: "21:50:00",
+    //             },
+    //             arrival: {
+    //               day: "1",
+    //               time: "00:15:00",
+    //             },
+    //             carrier: {
+    //               code: "FZ",
+    //               name: "flydubai",
+    //             },
+    //             duration: 235,
+    //             flight_number: "8198",
+    //           },
+    //           {
+    //             origin: {
+    //               code: "DXB",
+    //               name: "Dubai",
+    //             },
+    //             destination: {
+    //               code: "SIN",
+    //               name: "Singapore Changi",
+    //             },
+    //             departure: {
+    //               day: "1",
+    //               time: "10:00:00",
+    //             },
+    //             arrival: {
+    //               day: "1",
+    //               time: "21:25:00",
+    //             },
+    //             carrier: {
+    //               code: "EK",
+    //               name: "Emirates",
+    //             },
+    //             duration: 445,
+    //             flight_number: "352",
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // });
+    // const hotelStay = new Vue({
+    //   el: "#hotel-tay",
+    //   data: {
+    //     accommodations: [
+    //       {
+    //         id: "8abc65c5-02fd-11eb-ab79-a81e84e7d2e1",
+    //         name: "The Mandeville Hotel",
+    //         rating: "4",
+    //         destination_id: null,
+    //         address: "8-12 Mandeville Place",
+    //         city: "London",
+    //         zipcode: "W1U 2BE",
+    //         latitude: "51.516479",
+    //         longitude: "-0.151065",
+    //         photo_url:
+    //           "http://pix2.agoda.net/hotelimages/863/8634/8634_16100413260047329157.jpg?s=312x",
+    //         description:
+    //           "The Mandeville Hotel is perfectly located for both business and leisure guests in London. Offering a variety of facilities and services, the hotel provides all you need for a good night's sleep. 24-hour room service, free Wi-Fi in all rooms, daily housekeeping, fax machine, photocopying are on the list of things guests can enjoy. Guestrooms are designed to provide an optimal level of comfort with welcoming decor and some offering convenient amenities like locker, television LCD/plasma screen, mirror, linens, non smoking rooms. The hotel offers various recreational opportunities. The Mandeville Hotel is an excellent choice from which to explore London or to simply relax and rejuvenate.",
+    //         images: [
+    //           {
+    //             url:
+    //               "http://pix2.agoda.net/hotelimages/863/8634/8634_16100413260047329157.jpg?s=312x",
+    //           },
+    //           {
+    //             url:
+    //               "http://pix3.agoda.net/hotelimages/863/8634/8634_120521205710674.jpg?s=312x",
+    //           },
+    //           {
+    //             url:
+    //               "http://pix2.agoda.net/hotelimages/863/8634/8634_15072117400032718987.jpg?s=312x",
+    //           },
+    //           {
+    //             url:
+    //               "http://pix5.agoda.net/hotelimages/863/8634/8634_15072117400032718991.jpg?s=312x",
+    //           },
+    //           {
+    //             url:
+    //               "http://pix1.agoda.net/hotelimages/863/8634/8634_15072117400032718993.jpg?s=312x",
+    //           },
+    //         ],
+    //         rooms: [
+    //           {
+    //             id: "00057f6a-035c-11eb-a035-a81e84e7d2e1",
+    //             is_refundable: true,
+    //             meals: [
+    //               {
+    //                 name: "breakfast",
+    //                 desc: "",
+    //               },
+    //               {
+    //                 name: "dinner",
+    //                 desc: "",
+    //               },
+    //             ],
+    //             pax: {
+    //               adults: 2,
+    //               kids: 0,
+    //               infants: 0,
+    //             },
+    //             room_type: "Deluxe Double",
+    //             photo_url:
+    //               "//pix7.agoda.net/hotelImages/863/8634/8634_16100621460047510377.jpg?s=1024x768",
+    //             images: [
+    //               {
+    //                 url:
+    //                   "//pix7.agoda.net/hotelImages/863/8634/8634_16100621460047510377.jpg?s=1024x768",
+    //               },
+    //             ],
+    //           },
+    //           {
+    //             id: "0005816a-035c-11eb-a035-a81e84e7d2e1",
+    //             is_refundable: true,
+    //             meals: [
+    //               {
+    //                 name: "breakfast",
+    //                 desc: "",
+    //               },
+    //               {
+    //                 name: "dinner",
+    //                 desc: "",
+    //               },
+    //             ],
+    //             guests: {
+    //               adults: 2,
+    //               kids: 1,
+    //               infants: 0,
+    //             },
+    //             room_type: "Executive Double",
+    //             photo_url:
+    //               "//pix7.agoda.net/hotelImages/863/8634/8634_16100621310047510167.jpg?s=1024x768",
+    //             images: [
+    //               {
+    //                 url:
+    //                   "//pix7.agoda.net/hotelImages/863/8634/8634_16100621310047510167.jpg?s=1024x768",
+    //               },
+    //             ],
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // });
+    // const transferSec = new Vue({
+    //   el: "#transfr-sec",
+    //   methods: {
+    //     GetPax: GetPax,
+    //   },
+    //   data: {
+    //     chauffer: {
+    //       id: "d08da438-d60e-4bb5-bc8a-0618dd30fd19",
+    //       package_id: "bdd38f36-b874-4dc6-8be1-60bd9be49de4",
+    //       mode: "flight",
+    //       fr_day: "0",
+    //       to_day: "2",
+    //       sort_order: 1,
+    //       data: {
+    //         origin: {
+    //           id: "3cfaaed7-f46a-11ea-9701-a81e84e7d2e1",
+    //           name: "New Delhi, India",
+    //         },
+    //         destination: {
+    //           id: "3e3eb5ab-f46a-11ea-9701-a81e84e7d2e1",
+    //           name: "Mumbai, India",
+    //         },
+    //         cars: [
+    //           {
+    //             pick_up: {
+    //               day: 0,
+    //               time: "12:00:00",
+    //             },
+    //             drop_off: {
+    //               day: 3,
+    //               time: "12:00:00",
+    //             },
+    //             is_refundable: true,
+    //             pax: {
+    //               adults: 2,
+    //               kids: 0,
+    //               infants: 0,
+    //             },
+    //             name: "Indigo Sedan",
+    //             luggage: {
+    //               big: 2,
+    //               small: 3,
+    //             },
+    //             seating_capacity: 4,
+    //             policies: [
+    //               {
+    //                 name: "Term and Condition",
+    //                 desc: "my t&c",
+    //               },
+    //             ],
+    //             images: [
+    //               {
+    //                 url: "....",
+    //               },
+    //             ],
+    //           },
+    //         ],
+    //       },
+    //       is_trash: 0,
+    //     },
+    //   },
+    // });
+  </script>
+</html>
