@@ -86,8 +86,6 @@
                   <a
                     :href="'mailto:'+data.query.assigned_to.email"
                     class="btn btn-normal2"
-                    data-toggle="modal"
-                    data-target="#expertTalk"
                     ><img src="assets/images/call-icon.png" alt="" /> Talk to
                     Expert</a
                   >
@@ -981,7 +979,7 @@
                           <div class="row">
                             <div class="col-md-6">
                               <h4>Inclusions</h4>
-                              <ul>
+                              <ul v-for="">
                                 <li>Professional guide</li>
                                 <li>Headset to hear the gide clearly</li>
                                 <li>Tour of Eiffel tower’s second floor</li>
@@ -1312,14 +1310,14 @@
         </div>
       </section>
 
-      <section class="inclusion-exclusion">
+      <section class="inclusion-exclusion" v-if="data.data.additional_details[0].desc.length>5 || data.data.additional_details[1].desc.length>5">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" v-if="data.data.additional_details[0].desc.length>5" >
               <h5>Inclusions</h5>
               {{data.data.additional_details[0].desc}}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" v-if="data.data.additional_details[1].desc.length>5">
               <h5>Exclusions</h5>
               {{data.data.additional_details[1].desc}}
             </div>
