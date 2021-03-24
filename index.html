@@ -433,7 +433,7 @@
         </div>
       </section>
 
-      <section class="flight-detail">
+      <section class="flight-detail" v-if="getFlights.length>0">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -1316,16 +1316,16 @@
         </div>
       </section>
 
-      <section class="inclusion-exclusion" v-if="data.data.additional_details[0].desc.length>5 || data.data.additional_details[1].desc.length>5">
+      <section class="inclusion-exclusion" v-if="getInclusions.length>5 || getExclusions.length>5">
         <div class="container">
           <div class="row">
-            <div class="col-md-6" v-if="data.data.additional_details[0].desc.length>5" >
+            <div class="col-md-6" v-if="getInclusions.length>5" >
               <h5>Inclusions</h5>
-              {{data.data.additional_details[0].desc}}
+              {{getInclusions}}
             </div>
-            <div class="col-md-6" v-if="data.data.additional_details[1].desc.length>5">
+            <div class="col-md-6" v-if="getExclusions.length>5">
               <h5>Exclusions</h5>
-              {{data.data.additional_details[1].desc}}
+              {{getExclusions}}
             </div>
           </div>
         </div>
@@ -1427,7 +1427,7 @@
             </div>
             <div class="col-md-10">
               <p>
-               {{data.data.additional_details[2].desc}}
+               {{getNote}}
               </p>
             </div>
           </div>
@@ -1516,6 +1516,9 @@
           return moment(this.data.start_date).add(add, "days").format("LL");
         },
         getActivity: function (loc){
+          if(!_lo.get(this.data,'data.activities')){
+            return [];
+          }
           return this.data.data.activities.filter((activity)=>(activity.destination.name === loc));
         },
         getTotalPeopleInRooms: function (rooms) {
@@ -1571,8 +1574,40 @@
         name: "Hello",
       },
       computed: {
+        getNote: function(){
+          // console.log(_lo.get(this.data,'data.additional_details'))
+          if(!_lo.get(this.data,'data.additional_details')) return "";
+          for(let idx in this.data.data.additional_details){
+            const detail = this.data.data.additional_details[idx];
+            // console.log()
+            if(detail.name.toLowerCase() === "note") return detail.desc;
+          }
+        },
+        getInclusions: function(){
+          if(!_lo.get(this.data,'data.additional_details')) return "";
+          // return "";
+          for(let idx in this.data.data.additional_details){
+            const detail = this.data.data.additional_details[idx];
+            // console.log()
+            if(detail.name.toLowerCase() === "inclusions") return detail.desc;
+          }
+          return "";
+        },
+        getExclusions: function(){
+          if(!_lo.get(this.data,'data.additional_details')) return "";
+          // return "";
+          for(let idx in this.data.data.additional_details){
+            const detail = this.data.data.additional_details[idx];
+            // console.log()
+            if(detail.name.toLowerCase() === "exclusions") return detail.desc;
+          }
+          return "";
+        },
         getActivityDestinations: function(){
           // let finalVal = "";
+          if(!_lo.get(this.data,'data.activities')){
+            return [];
+          }
           const locs = new Set();
           this.data.data.activities.map((element)=>{
             locs.add(element.destination.name.split(',')[0]);
@@ -1585,6 +1620,9 @@
           return locs2;
         },
         getFlights: function () {
+          if(!this.data.routes){
+            return [];
+          }
           // console.log(this)
           return this.data.routes
             .filter((route) => route.mode === "flight")
@@ -1592,6 +1630,9 @@
         },
         getAccommdations: function () {
           // console.log(this)
+          if(!this.data.routes){
+            return []
+          }
           return this.data.routes
             .filter((route) => route.mode === "hotel")
             .map((route) => {
@@ -1711,7 +1752,7 @@
           return [];
         },
         getCost: function(){
-          if(!this.data.data.prices) return 0;
+          if(!_lo.get(this.data,"data.prices"))return 0;
           return this.data.data.prices.reduce((amt,price)=>amt+price.amount*price.count,0)
         }
       },
