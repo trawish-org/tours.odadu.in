@@ -49,6 +49,10 @@
             display: none; 
         } 
   </style>
+   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const _lo = _;
+  </script>
   <body>
     
     <div id="app" v-cloak>
@@ -84,12 +88,12 @@
   
                 <li class="header-btn">
                   <a
-                    :href="'mailto:'+data.query.assigned_to.email"
+                    :href="'mailto:'+_lo.get(data,'query.assigned_to.email')"
                     class="btn btn-normal2"
                     ><img src="assets/images/call-icon.png" alt="" /> Talk to
                     Expert</a
                   >
-                  <a class="btn btn-yellow2" :href="'mailto:'+data.query.assigned_to.email">Confirm Booking</a>
+                  <a class="btn btn-yellow2" :href="'mailto:'+_lo.get(data,'query.assigned_to.email')">Confirm Booking</a>
                 </li>
               </ul>
             </div>
@@ -109,17 +113,17 @@
                   <!-- {{first_name}}’s
                   <span>{{(to_day-fr_day)+"N"+(to_day-fr_day+1)+"D"}}</span>
                   Travel to {{destination}} Awaits -->
-                  {{data.name}}
+                  {{_lo.get(data,'name')}}
                 </h2>
                 <a
-                  :href="'mailto:'+data.query.assigned_to.email"
+                  :href="'mailto:'+_lo.get(data,'query.assigned_to.email')"
                   class="btn btn-yellow2 hide"
                   data-toggle="modal "
                   data-target="#expertTalk"
                   >Talk to Expert</a
                 >
                 <h5>
-                  Package Created by : {{data.query.assigned_to.first_name+" "+data.query.assigned_to.last_name}} | {{data.query.assigned_to.mobile}} | {{data.query.assigned_to.email}}
+                  <!-- Package Created by : {{data.query.assigned_to.first_name+" "+data.query.assigned_to.last_name}} | {{data.query.assigned_to.mobile}} | {{data.query.assigned_to.email}} -->
                 </h5>
                 <h5>{{moment(data.created_at).format("Do MMMM YYYY")}}</h5>
               </div>
@@ -135,7 +139,7 @@
               <div class="icon-box">
                 <img src="assets/images/talk/dummy-white.png" alt="" />
                 <h3>
-                  <div style="display: inline" v-html="GetPax(data.pax)"></div>
+                  <div style="display: inline" v-html="GetPax(_lo.get(data,'pax'))"></div>
                 </h3>
               </div>
               <div v-for=""></div>
@@ -1034,9 +1038,9 @@
         </div>
       </section>
 
-      <section class="transfer-bg"></section>
+      <section class="transfer-bg" v-if="getChauffer.length"></section>
 
-      <section class="transfer-sec" id="transfer-sec">
+      <section class="transfer-sec" id="transfer-sec" v-if="getChauffer.length">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -1075,17 +1079,17 @@
                               <div class="col-md-4">
                                 <div class="transfer-img">
                                   <img
-                                    :src="chauffer.data.cars[0].images[0].url"
+                                    :src="_lo.get(chauffer, 'data.cars[0].images[0].url')"
                                     alt=""
                                   />
                                 </div>
                               </div>
                               <div class="col-md-8">
                                 <div class="transfer-detail">
-                                  <h6 class="car-type">{{chauffer.data.cars[0].type}}</h6>
+                                  <h6 class="car-type">{{_lo.get(chauffer,'data.cars[0].type')}}</h6>
                                   <h2 class="car-name">
                                     <!-- {{const car = chauffer.data.cars[0]}} -->
-                                    <span>{{chauffer.data.cars[0].name}}</span>
+                                    <span>{{_lo.get(chauffer,'data.cars[0].name')}}</span>
                                     <span class="hour"
                                       ><img
                                         src="assets/images/talk/clock-icon.png"
@@ -1096,7 +1100,7 @@
                                     >
                                   </h2>
                                   <a href="#" class="non-refund-btn"
-                                    >{{(chauffer.data.cars[0].is_refundable?"":"NON - ")+
+                                    >{{(_lo.get(chauffer,'data.cars[0].is_refundable')?"":"NON - ")+
                                     "REFUNDABLE"}}</a
                                   >
                                 </div>
@@ -1104,9 +1108,9 @@
                                   <div class="col-md-6">
                                     <div class="from-to">
                                       <h6>From</h6>
-                                      <h4>{{(chauffer.data.origin)?(chauffer.data.origin.name)?chauffer.data.origin.name:'NA':'NA'}}</h4>
+                                      <h4>{{_lo.get(chauffer,'data.origin.name')?chauffer.data.origin.name:'NA'}}</h4>
                                       <h5>Location name</h5>
-                                      <h5>{{chauffer.fr_day?GetNextDate(chauffer.fr_day):"NA"}} | 6:30 PM</h5>
+                                      <h5>{{_lo.get(chauffer,'fr_day')?GetNextDate(chauffer.fr_day):"NA"}} | 6:30 PM</h5>
                                     </div>
                                   </div>
                                   <div class="col-md-6">
@@ -1118,9 +1122,9 @@
                                       "
                                     >
                                       <h6>To</h6>
-                                      <h4>{{(chauffer.data.destination)?(chauffer.data.destination.name)?chauffer.data.destination.name:'NA':'NA'}}</h4>
+                                      <h4>{{_lo.get(chauffer,'data.destination.name')?chauffer.data.destination.name:'NA'}}</h4>
                                       <h5>Location name</h5>
-                                      <h5>{{chauffer.to_day?GetNextDate(chauffer.to_day):"NA"}} | 6:30 PM</h5>
+                                      <h5>{{_lo.get(chauffer,'to_day')?GetNextDate(chauffer.to_day):"NA"}} | 6:30 PM</h5>
                                     </div>
                                   </div>
                                 </div>
@@ -1132,13 +1136,13 @@
                                 <h5>
                                   <div
                                     style="display: inline"
-                                    v-html="GetPax(chauffer.data.cars[0].pax)"
+                                    v-html="GetPax(_lo.get(chauffer,'data.cars[0].pax'))"
                                   ></div>
                                 </h5>
                               </div>
                               <div class="detail-box">
-                                <h6 class="title">No of Luggages</h6>
-                                <h5>{{(chauffer.data.cars[0].luggage.big>9?"":"0")+chauffer.data.cars[0].luggage.big+" Big"}} | {{(chauffer.data.cars[0].luggage.small>9?"":"0")+chauffer.data.cars[0].luggage.small+" Small"}}</h5>
+                                <h6 class="title" v-if='_lo.get(chauffer,"data.cars[0].luggage.big")||_lo.get(chauffer,"data.cars[0].luggage.small")'>No of Luggages</h6>
+                                <h5>{{_lo.get(chauffer,"data.cars[0].luggage.big")?((chauffer.data.cars[0].luggage.big>9?"":"0")+chauffer.data.cars[0].luggage.big+" Big"):""}} | {{_lo.get(chauffer,"data.cars[0].luggage.small")?((chauffer.data.cars[0].luggage.small>9?"":"0")+chauffer.data.cars[0].luggage.small+" Small"):""}}</h5>
                               </div>
                               <div class="detail-box">
                                 <h6 class="title">Car Transmission</h6>
@@ -1236,7 +1240,7 @@
                   <th>Cost for</th>
                   <th>Cost</th>
                 </tr>
-                <tr v-for="price in data.data.prices">
+                <tr v-for="price in _lo.get(data, 'data.prices')">
                   <td>{{price.name}}</td>
                   <td>₹ {{price.amount*price.count}}.00/- <span>(Inc. GST)</span></td>
                 </tr>
@@ -1263,7 +1267,7 @@
         </div>
       </section>
 
-      <section class="travel-agent">
+      <section class="travel-agent" v-if="_lo.get(data,'query.assigned_to')">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -1283,7 +1287,7 @@
                 />
               </div>
               <div class="agent-content">
-                <h3>{{data.query.assigned_to.first_name+" "+data.query.assigned_to.last_name}}</h3>
+                <h3>{{_lo.get(data,'query.assigned_to.first_name')+" "+_lo.get(data,'query.assigned_to.last_name')}}</h3>
                 <p>
                   Driven by a passion for the outdoors, 'Active Adventurers'
                   want to push themselves physically and mentally while
@@ -1294,16 +1298,18 @@
             <div class="col-md-4">
               <div class="agent-contact">
                 <p>
-                  <a href="tel:9740781404"
-                    ><i class="fa fa-phone-alt"></i> {{data.query.assigned_to.mobile}}</a
+                  <a :href="'tel:'+_lo.get(data,'query.assigned_to.mobile')"
+                    >
+                    <i class="fa fa-phone-alt"></i> {{_lo.get(data,'query.assigned_to.mobile')}}</a
                   >
                 </p>
                 <p>
-                  <a :href="'mailto:'+data.query.assigned_to.email"
-                    ><i class="fa fa-envelope">&nbsp;</i>{{data.query.assigned_to.email}}</a
+                  <a :href="'mailto:'+_lo(data,'query.assigned_to.email')"
+                    >
+                    <i class="fa fa-envelope">&nbsp;</i>{{_lo(data,'query.assigned_to.email')}}</a
                   >
                 </p>
-                <a :href="'mailto:'+data.query.assigned_to.email" class="btn btn-yellow2">CONTACT</a>
+                <a :href="'mailto:'+_lo(data,'query.assigned_to.email')" class="btn btn-yellow2">CONTACT</a>
               </div>
             </div>
           </div>
@@ -1395,12 +1401,17 @@
       </section>
 
       <section class="note">
-        <div class="container">
-          <div class="row">
+        <div class="container" style="border: 1px solid #333; border-radius: 30px;">
+          <div class="row" v-for="(policy,index) in _lo.get(data,'data.policies')">
             <div class="col-md-12">
-              <p>
-                <b>Terms and Conditions :</b>&nbsp;{{data.data.policies[0].desc}}
+              <p style="border: 0;">
+                <b>{{policy.name}} :</b>&nbsp;{{policy.desc}}
               </p>
+            </div>
+            <div style="width: 100%;display: flex;justify-content: center;" v-if="index != _lo.get(data,'data.policies.length')-1">
+              <div style="width: 80%;height: 1px; background: #888;" >
+            </div>
+            <!-- {{index}} -->
             </div>
           </div>
         </div>
@@ -1591,6 +1602,9 @@
             });
         },
         getChauffer: function () {
+          if(!this.data.routes){
+            return [];
+          }
           return this.data.routes.filter(
             (route) => route.mode === "car_chauffeur"
           );
@@ -1600,6 +1614,7 @@
           let finalPlaces = ""
           let flightOrigin = "";
           const routes = this.data.routes;
+          if(!routes)return undefined;
           const arrow = '<span>--------<i class="fas fa-caret-right"></i></span>'
           // let flightPlaces = routes[0].data.origin.name.split(',');
           routes.map((element,index)=>{
