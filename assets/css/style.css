@@ -4638,6 +4638,10 @@ a:hover {
   margin: 20px 0px 40px 40px;
 }
 
+.transfer-img{
+  overflow: hidden;
+}
+
 .transfer-box .from-to {
   margin-top: 40px;
 }

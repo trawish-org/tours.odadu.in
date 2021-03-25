@@ -1038,9 +1038,9 @@
         </div>
       </section>
 
-      <section class="transfer-bg" v-if="getChauffer.length"></section>
+      <section class="transfer-bg" v-if="getChauffer.length || getSelfDrive.length || getTrain.length || getFerry.length || getBus.length"></section>
 
-      <section class="transfer-sec" id="transfer-sec" v-if="getChauffer.length">
+      <section class="transfer-sec" id="transfer-sec" v-if="getChauffer.length || getSelfDrive.length || getTrain.length || getFerry.length || getBus.length">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -1048,14 +1048,13 @@
               <ul class="nav nav-pills nav-justified">
                 <li><a data-toggle="pill" href="#train" v-if="getTrain.length>0">Train</a></li>
                 <li class="active">
-                  <a data-toggle="pill" href="#self-drive"  v-if="getSelfDrive.length>0">Self Drive</a>
+                  <a data-toggle="pill" href="#self-drive" :class="getSelfDrive.length>0?'active':''" v-if="getSelfDrive.length>0">Self Drive</a>
                 </li>
                 <li><a data-toggle="pill" href="#ferry"  v-if="getFerry.length>0">Ferry</a></li>
                 <li><a data-toggle="pill" href="#bus"  v-if="getBus.length>0">Bus</a></li>
                 <li>
-                  <a data-toggle="pill" href="#chauffer" class="active"  v-if="getChauffer.length>0"
-                    >Chauffer</a
-                  >
+                  <a data-toggle="pill" href="#chauffer" :class=" getSelfDrive.length==0?'active':getChauffer.length>0?'active':''"  v-if="getChauffer.length>0"
+                    >Chauffer</a>
                 </li>
               </ul>
 
@@ -1066,7 +1065,7 @@
                     laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
                 </div>
-                <div id="chauffer" class="tab-pane fade in active show">
+                <div id="chauffer" class="tab-pane fade in">
                   <carousel class="transfer-slider" 
                   :per-page="1"
                   :loop="true"
@@ -1141,20 +1140,21 @@
                                 </h5>
                               </div>
                               <div class="detail-box">
-                                <h6 class="title" v-if='_lo.get(chauffer,"data.cars[0].luggage.big")||_lo.get(chauffer,"data.cars[0].luggage.small")'>No of Luggages</h6>
-                                <h5>{{_lo.get(chauffer,"data.cars[0].luggage.big")?((chauffer.data.cars[0].luggage.big>9?"":"0")+chauffer.data.cars[0].luggage.big+" Big"):""}} | {{_lo.get(chauffer,"data.cars[0].luggage.small")?((chauffer.data.cars[0].luggage.small>9?"":"0")+chauffer.data.cars[0].luggage.small+" Small"):""}}</h5>
+                                <h6 class="title">No of Luggages</h6>
+                                <h5 v-if='_lo.get(chauffer,"data.cars[0].luggage.big")||_lo.get(chauffer,"data.cars[0].luggage.small")'>{{_lo.get(chauffer,"data.cars[0].luggage.big")?((chauffer.data.cars[0].luggage.big>9?"":"0")+chauffer.data.cars[0].luggage.big+" Big"):""}} | {{_lo.get(chauffer,"data.cars[0].luggage.small")?((chauffer.data.cars[0].luggage.small>9?"":"0")+chauffer.data.cars[0].luggage.small+" Small"):""}}</h5>
+                                <h5 v-if='!(_lo.get(chauffer,"data.cars[0].luggage.big")||_lo.get(chauffer,"data.cars[0].luggage.small"))'>NA</h5>
                               </div>
                               <div class="detail-box">
                                 <h6 class="title">Car Transmission</h6>
-                                <h5>Automatic</h5>
+                                <h5>{{_lo.get(chauffer,"data.cars[0].transmission")?_lo.get(chauffer,"data.cars[0].transmission"):"NA"}}</h5>
                               </div>
                               <div class="detail-box">
                                 <h6 class="title">Insurance</h6>
-                                <h5>Covered</h5>
+                                <h5>{{_lo.get(chauffer,"data.cars[0].insurance")?_lo.get(chauffer,"data.cars[0].insurance"):"NA"}}</h5>
                               </div>
                               <div class="detail-box">
                                 <h6 class="title">Safety</h6>
-                                <h5>GPS Enabled</h5>
+                                <h5>{{_lo.get(chauffer,"data.cars[0].insurance")?_lo.get(chauffer,"data.cars[0].safety"):"NA"}}</h5>
                               </div>
                             </div>
                           </div>
@@ -1178,11 +1178,103 @@
                   </p>
                 </div>
 
-                <div id="self-drive" class="tab-pane fade">
-                  <p>
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
+                <div id="self-drive" class="tab-pane fade in active show">
+                    <carousel class="transfer-slider" 
+                    :per-page="1"
+                    :loop="true"
+                    :navigationEnabled="true">
+                      <slide class="item" v-for="chauffer in getSelfDrive">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="transfer-box" style="margin-bottom: 20px;">
+                              <div class="row" style="margin-bottom: 20px;">
+                                <div class="col-md-4">
+                                  <div class="transfer-img" >
+                                    <img
+                                      :src="_lo.get(chauffer, 'data.cars[0].images[0].url')"
+                                      alt=""
+                                    />
+                                  </div>
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="transfer-detail">
+                                    <h6 class="car-type">{{_lo.get(chauffer,'data.cars[0].type')}}</h6>
+                                    <h2 class="car-name">
+                                      <!-- {{const car = chauffer.data.cars[0]}} -->
+                                      <span>{{_lo.get(chauffer,'data.cars[0].name')}}</span>
+                                      <span class="hour"
+                                        ><img
+                                          src="assets/images/talk/clock-icon.png"
+                                          class="img-fluid"
+                                          alt=""
+                                        />
+                                        2 HRS</span
+                                      >
+                                    </h2>
+                                    <a href="#" class="non-refund-btn"
+                                      >{{(_lo.get(chauffer,'data.cars[0].is_refundable')?"":"NON - ")+
+                                      "REFUNDABLE"}}</a
+                                    >
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="from-to">
+                                        <h6>From</h6>
+                                        <h4>{{_lo.get(chauffer,'data.origin.name')?chauffer.data.origin.name:'NA'}}</h4>
+                                        <h5>Location name</h5>
+                                        <h5>{{_lo.get(chauffer,'fr_day')?GetNextDate(chauffer.fr_day):"NA"}} | 6:30 PM</h5>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div
+                                        class="from-to"
+                                        style="
+                                          border-left: 3px dashed #888;
+                                          padding-left: 20px;
+                                        "
+                                      >
+                                        <h6>To</h6>
+                                        <h4>{{_lo.get(chauffer,'data.destination.name')?chauffer.data.destination.name:'NA'}}</h4>
+                                        <h5>Location name</h5>
+                                        <h5>{{_lo.get(chauffer,'to_day')?GetNextDate(chauffer.to_day):"NA"}} | 6:30 PM</h5>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="transfer-box-bottom">
+                                <div class="detail-box">
+                                  <h6 class="title">No of Pax</h6>
+                                  <h5>
+                                    <div
+                                      style="display: inline"
+                                      v-html="GetPax(_lo.get(chauffer,'data.cars[0].pax'))"
+                                    ></div>
+                                  </h5>
+                                </div>
+                                <div class="detail-box">
+                                  <h6 class="title">No of Luggages</h6>
+                                  <h5 v-if='_lo.get(chauffer,"data.cars[0].luggage.big")||_lo.get(chauffer,"data.cars[0].luggage.small")'>{{_lo.get(chauffer,"data.cars[0].luggage.big")?((chauffer.data.cars[0].luggage.big>9?"":"0")+chauffer.data.cars[0].luggage.big+" Big"):""}} | {{_lo.get(chauffer,"data.cars[0].luggage.small")?((chauffer.data.cars[0].luggage.small>9?"":"0")+chauffer.data.cars[0].luggage.small+" Small"):""}}</h5>
+                                  <h5 v-if='!(_lo.get(chauffer,"data.cars[0].luggage.big")||_lo.get(chauffer,"data.cars[0].luggage.small"))'>NA</h5>
+                                </div>
+                                <div class="detail-box">
+                                  <h6 class="title">Car Transmission</h6>
+                                  <h5>{{_lo.get(chauffer,"data.cars[0].transmission")?_lo.get(chauffer,"data.cars[0].transmission"):"NA"}}</h5>
+                                </div>
+                                <div class="detail-box">
+                                  <h6 class="title">Insurance</h6>
+                                  <h5>{{_lo.get(chauffer,"data.cars[0].insurance")?_lo.get(chauffer,"data.cars[0].insurance"):"NA"}}</h5>
+                                </div>
+                                <div class="detail-box">
+                                  <h6 class="title">Safety</h6>
+                                  <h5>{{_lo.get(chauffer,"data.cars[0].insurance")?_lo.get(chauffer,"data.cars[0].safety"):"NA"}}</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </slide>
+                    </carousel>
                 </div>
               </div>
             </div>
@@ -1457,7 +1549,7 @@
   <script type="module">
     const GetPax = (pax) => {
       if (!pax) {
-        return "";
+        return "<h3>NA</h3>";
       }
       const adults = pax.adults;
       const kids = pax.kids;
@@ -1676,7 +1768,7 @@
                 flightOrigin += element;
                 if( index != flightPlaces.length-1) flightOrigin+=','
                 }
-              })
+              })    
               finalPlaces += flightOrigin + ((index != routes.length-1)?arrow:"");
             }
             else if(element.mode === "car_chauffeur"){
@@ -1740,7 +1832,12 @@
           //         Singapore`
         },
         getSelfDrive: function(){
-          return [];
+          if(!this.data.routes){
+            return [];
+          }
+          return this.data.routes.filter(
+            (route) => route.mode === "car_self"
+          );
         },
         getTrain: function(){
           return [];
