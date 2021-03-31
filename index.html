@@ -859,13 +859,15 @@
 
               <div class="tab-content">
                 <div :id="place" :class="'tab-pane fade in active'+(index==0?' show':'')" v-for="(place,index) in getActivityDestinations">
-                  <carousel class="tour-detail-slider">
-                    <slide class="item" v-for="activity in getActivity(place)">
+                  <carousel class="tour-detail-slider" :per-page="1">
+                    {{console.log(getActivity(place),"sds")}}
+                    <slide class="item" v-for="activity in getActivity(place)[0].activity">
                       <div class="row">
                         <div class="col-lg-3 col-md-4">
                           <div class="tour-detail-image">
+                            <!-- {{console.log(activity)}} -->
                             <img
-                              :src="activity.activity.images[0].url"
+                              :src="activity.images[0].url"
                               class="img-fluid"
                               alt=""
                             />
@@ -873,136 +875,55 @@
                         </div>
 
                         <div class="col-lg-7">
-                          <h3>{{activity.activity.title}}</h3>
+                          <h3>{{activity.title}}</h3>
 
-                          <h6>{{activity.activity.is_refundable?"":"Non -"}} Refundable</h6>
+                          <h6>{{activity.is_refundable?"":"Non -"}} Refundable</h6>
                           <h5>
-                            <span class="rating-count">{{activity.activity.rating}}</span>
+                            <span class="rating-count" v-if="activity.rating && activity.rating>0">{{activity.rating}}</span>
                             <span class="review-star">
                             <img
                               src="assets/images/talk/blue-star.png"
                               class="img-fluid"
                               alt=""
-                              v-for="rating in parseInt(activity.activity.rating)"
+                              v-for="rating in parseInt(activity.rating)"
                             />
+                            <!-- {{console.log(activity.rating)}} -->
                             <img
                               src="assets/images/talk/half-star.png"
                               class="img-fluid"
                               alt=""
-                              v-if="parseFloat(activity.activity.rating)%1 == 0.5"
+                              v-if="parseFloat(activity.rating)%1 == 0.5"
                             />
                             </span>
-                            <span class="review-count">545 Reviews</span>
+                            <span class="review-count" v-if="activity.rating && activity.rating>0">545 Reviews</span>
                             <span class="hour"
+                            v-if="activity.duration && activity.duration>0"
                               ><img
                                 src="assets/images/talk/clock-icon.png"
                                 class="img-fluid"
                                 alt=""
                               />
-                              2 HRS</span
+                              {{activity.duration+" HRS"}}</span
                             >
                           </h5>
+                          <br/>
                           <p>
-                           {{activity.activity.summary}}
+                           {{activity.summary}}
                           </p>
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" v-if="activity.inclusions">
                               <h4>Inclusions</h4>
-                              {{activity.activity.inclusions}}
+                              {{activity.inclusions}}
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6" v-if="activity.exclusions">
                               <h4>Exclusions</h4>
-                              {{activity.activity.exclusions}}
+                              {{activity.exclusions}}
                             </div>
                           </div>
                         </div>
                       </div>
                     </slide>
-
-                    <div class="item">
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4">
-                          <div class="tour-detail-image">
-                            <img
-                              src="assets/images/talk/hotel-stay.png"
-                              class="img-fluid"
-                              alt=""
-                            />
-                          </div>
-                        </div>
-
-                        <div class="col-lg-7">
-                          <h3>Coffee Farm Tour, From Seedling to Cup</h3>
-
-                          <h6>Non - Refundable</h6>
-                          <h5>
-                            <span class="rating-count">4.5</span>
-                            <span class="review-star">
-                              <img
-                                src="assets/images/talk/blue-star.png"
-                                class="img-fluid"
-                                alt=""
-                              />
-                              <img
-                                src="assets/images/talk/blue-star.png"
-                                class="img-fluid"
-                                alt=""
-                              />
-                              <img
-                                src="assets/images/talk/blue-star.png"
-                                class="img-fluid"
-                                alt=""
-                              />
-                              <img
-                                src="assets/images/talk/blue-star.png"
-                                class="img-fluid"
-                                alt=""
-                              />
-                              <img
-                                src="assets/images/talk/half-star.png"
-                                class="img-fluid"
-                                alt=""
-                              />
-                            </span>
-                            <span class="review-count">545 Reviews</span>
-                            <span class="hour"
-                              ><img
-                                src="assets/images/talk/clock-icon.png"
-                                class="img-fluid"
-                                alt=""
-                              />
-                              2 HRS</span
-                            >
-                          </h5>
-                          <p>
-                            The location is perfect. In China Town, by the
-                            financial district, walking distance to Boat Quay
-                            and Clarke Quay,
-                          </p>
-                          <div class="row">
-                            <div class="col-md-6">
-                              <h4>Inclusions</h4>
-                              <ul v-for="">
-                                <li>Professional guide</li>
-                                <li>Headset to hear the gide clearly</li>
-                                <li>Tour of Eiffel tower’s second floor</li>
-                                <li>Seine River cruise</li>
-                              </ul>
-                            </div>
-
-                            <div class="col-md-6">
-                              <h4>Exclusions</h4>
-                              <ul>
-                                <li>Food and Drinks</li>
-                                <li>Hotel pickup and drop-off</li>
-                                <li>Gratuities</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </carousel>
                 </div>
                 <div id="singapore" class="tab-pane fade">
@@ -1611,7 +1532,12 @@
           if(!_lo.get(this.data,'data.activities')){
             return [];
           }
-          return this.data.data.activities.filter((activity)=>(activity.destination.name === loc));
+          console.log(loc)
+          return this.data.data.activities.filter((activity)=>{
+            // console.log(activity,_lo.get(activity,"destination.name").split(',')[0] === loc ); 
+            console.log(_lo.get(activity,"destination.name").split(','))
+            return (_lo.get(activity,"destination.name").split(',')[0] === loc);
+          })
         },
         getTotalPeopleInRooms: function (rooms) {
           console.log(rooms);
