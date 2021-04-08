@@ -861,7 +861,7 @@
                 <div :id="place" :class="'tab-pane fade in active'+(index==0?' show':'')" v-for="(place,index) in getActivityDestinations">
                   <carousel class="tour-detail-slider" :per-page="1">
                     {{console.log(getActivity(place),"sds")}}
-                    <slide class="item" v-for="activity in getActivity(place)[0].activity">
+                    <slide class="item" v-for="activity in getActivity(place)">
                       <div class="row">
                         <div class="col-lg-3 col-md-4">
                           <div class="tour-detail-image">
@@ -1532,15 +1532,15 @@
           if(!_lo.get(this.data,'data.activities')){
             return [];
           }
-          console.log(loc)
+          // console.log(loc)
           return this.data.data.activities.filter((activity)=>{
             // console.log(activity,_lo.get(activity,"destination.name").split(',')[0] === loc ); 
-            console.log(_lo.get(activity,"destination.name").split(','))
+            // console.log(_lo.get(activity,"destination.name").split(','))
             return (_lo.get(activity,"destination.name").split(',')[0] === loc);
-          })
+          }).map((element)=>(element.activity)[0])
         },
         getTotalPeopleInRooms: function (rooms) {
-          console.log(rooms);
+          // console.log(rooms);
           return rooms
             .map((room) => {
               console.log(room);
